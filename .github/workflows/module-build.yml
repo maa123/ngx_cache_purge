@@ -24,8 +24,10 @@ jobs:
     - name: make
       run: make modules
       working-directory: ./../nginx-1.20.0
+    - name: copy
+      run: cp ../nginx-1.20.0/objs/ngx_http_cache_purge_module.so ./
     - name: save
       uses: actions/upload-artifact@v2
       with:
-        name: code-coverage-report
-        path: ../nginx-1.20.0/objs/ngx_http_cache_purge_module.so
+        name: ngx_http_cache_purge_module
+        path: ngx_http_cache_purge_module.so
