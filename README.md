@@ -1,3 +1,8 @@
+
+動的モジュールとして利用するために変更を加えました
+
+
+
 About
 =====
 `ngx_cache_purge` is `nginx` module which adds ability to purge content from
