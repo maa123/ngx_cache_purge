@@ -28,11 +28,11 @@ jobs:
       run: cp ../nginx-1.20.0/objs/ngx_http_cache_purge_module.so ./
     - name: Release
       uses: softprops/action-gh-release@v1
-      if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
           README.md
           LICENSE
           ngx_http_cache_purge_module.so
+        name: ${{ github.ref }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
