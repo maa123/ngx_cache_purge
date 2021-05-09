@@ -33,10 +33,13 @@ jobs:
         path: ngx_http_cache_purge_module.so
     - name: Release
       uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/heads/release/')
       with:
         files: |
           README.md
           LICENSE
           ngx_http_cache_purge_module.so
+        name: ${{ github.ref }}
+        tag_name:  ${{ github.ref }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
