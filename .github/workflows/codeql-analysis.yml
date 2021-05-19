@@ -53,8 +53,19 @@ jobs:
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v1
+    - name: download nginx
+      run: |
+        wget https://nginx.org/download/nginx-1.20.0.tar.gz
+        tar -xzvf nginx-1.20.0.tar.gz
+      working-directory: ./../
+    - name: configure
+      run: ./configure --with-compat --add-dynamic-module=$GITHUB_WORKSPACE
+      working-directory: ./../nginx-1.20.0
+    - name: make
+      run: make modules
+      working-directory: ./../nginx-1.20.0
+    - name: copy
+      run: cp ../nginx-1.20.0/objs/ngx_http_cache_purge_module.so ./
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 https://git.io/JvXDl
