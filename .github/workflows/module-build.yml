@@ -15,17 +15,17 @@ jobs:
     - uses: actions/checkout@v2
     - name: download nginx
       run: |
-        wget https://nginx.org/download/nginx-1.20.1.tar.gz
-        tar -xzvf nginx-1.20.1.tar.gz
+        wget https://nginx.org/download/nginx-1.20.2.tar.gz
+        tar -xzvf nginx-1.20.2.tar.gz
       working-directory: ./../
     - name: configure
       run: ./configure --with-compat --add-dynamic-module=$GITHUB_WORKSPACE
-      working-directory: ./../nginx-1.20.1
+      working-directory: ./../nginx-1.20.2
     - name: make
       run: make modules
-      working-directory: ./../nginx-1.20.1
+      working-directory: ./../nginx-1.20.2
     - name: copy
-      run: cp ../nginx-1.20.1/objs/ngx_http_cache_purge_module.so ./
+      run: cp ../nginx-1.20.2/objs/ngx_http_cache_purge_module.so ./
     - name: save
       uses: actions/upload-artifact@v2
       with:
